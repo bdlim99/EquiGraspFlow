@@ -1,0 +1,67 @@
+data:
+  train:
+    dataset:
+      name: partial
+      obj_types: [Laptop, Mug, Bowl, Pencil]
+      augmentation: SO3
+      scale: 8
+    batch_size: 4
+    num_workers: 8
+  val:
+    dataset:
+      name: partial
+      obj_types: [Laptop, Mug, Bowl, Pencil]
+      augmentation: SO3
+      scale: 8
+      num_rots: 3
+      num_views: 3
+    batch_size: 4
+    num_workers: 8
+  test:
+    dataset:
+      name: partial
+      obj_types: [Laptop, Mug, Bowl, Pencil]
+      augmentation: SO3
+      scale: 8
+      num_rots: 3
+      num_views: 3
+    batch_size: 4
+    num_workers: 8
+model:
+  name: equigraspflow
+  p_uncond: 0.2
+  guidance: 1.5
+  init_dist:
+    name: SO3_uniform_R3_normal
+  encoder:
+    name: vn_dgcnn_enc
+    num_neighbors: 40
+    dims: [1, 21, 21, 42, 85, 170, 341]
+    use_bn: False
+  vector_field:
+    name: vn_vf
+    dims: [346, 256, 256, 128, 128, 128, 2]
+    use_bn: False
+  ode_solver:
+    name: SE3_RK_mk
+    num_steps: 20
+losses:
+- name: mse
+optimizer:
+  name: adam
+  lr: 0.0001
+  weight_decay: 1.0e-6
+metrics:
+- name: emd
+  type: SE3
+trainer:
+  name: grasp_partial
+  criteria:
+  - name: emd
+    better: lower
+  num_epochs: 40000
+  print_interval: 100
+  val_interval: 10000
+  eval_interval: 100000
+  vis_interval: 100000
+  save_interval: 2000000
