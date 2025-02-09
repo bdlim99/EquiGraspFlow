@@ -1,0 +1,19 @@
+name: equigraspflow
+channels:
+  - defaults
+dependencies:
+  - pip=24.2
+  - python=3.10
+  - pip:
+      - omegaconf
+      - tensorboardX
+      - pyyaml
+      - numpy==1.26
+      - torch
+      - scipy
+      - tqdm
+      - h5py
+      - open3d==0.16.0
+      - roma
+      - pandas
+      - openpyxl

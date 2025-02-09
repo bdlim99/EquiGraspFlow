@@ -1,0 +1,10 @@
+# Byte-compiled
+__pycache__/
+**/*.pyc
+
+# Folders
+.vscode/
+dataset/
+train_results/
+pretrained_models/
+test_results/
