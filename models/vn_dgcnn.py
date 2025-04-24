@@ -10,9 +10,9 @@ class VNDGCNNEncoder(torch.nn.Module):
         self.num_neighbors = num_neighbors
         self.dims = dims
 
-        layers = [VNLinearLeakyReLU(dims[0], dims[1], use_bn=use_bn)]
+        layers = []
 
-        for dim_in, dim_out in zip(dims[1:-2], dims[2:-1]):
+        for dim_in, dim_out in zip(dims[:-2], dims[1:-1]):
             layers += [VNLinearLeakyReLU(2 * dim_in, dim_out, use_bn=use_bn)]
 
         layers += [VNLinearLeakyReLU(sum(dims[1:-1]), dims[-1], dim=4, share_nonlinearity=True, use_bn=use_bn)]
