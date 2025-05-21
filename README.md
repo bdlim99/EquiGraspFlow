@@ -131,7 +131,7 @@ To display these visualizations, use the following code:
 ```python
 import plotly.io as pio
 
-pio.from_json(open({path}/visualizations.json, 'r').read()).show()
+pio.from_json(open('{path}/visualizations.json', 'r').read()).show()
 ```
 
 Replace `path` with your test results directory.
