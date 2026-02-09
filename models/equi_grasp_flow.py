@@ -76,7 +76,6 @@ class EquiGraspFlow(torch.nn.Module):
     def sample(self, pc, nums_grasps):
         # Sample initial samples
         x_0 = self.init_dist(sum(nums_grasps), pc.device)
-        self.X0SAMPLED = deepcopy(x_0)
 
         # Encode point cloud
         z = self.encoder(pc)
