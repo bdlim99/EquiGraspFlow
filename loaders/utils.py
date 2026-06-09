@@ -1,7 +1,5 @@
 import os
 import open3d as o3d
-import pickle
-import numpy as np
 
 
 DATASET_DIR = 'dataset'
